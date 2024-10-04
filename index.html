@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exercicios</title>
+    <link rel="stylesheet" href="./style.css">
+</head>
+
+<body>
+    <div class="exercise1">
+        <h1>Exercício 1</h1>
+        <p>
+            <span>Criar uma função que retorne a quantidade de vogais da palavra passada</span>
+        </p>
+        <div class="code-box">
+            <h2>Contador de vogais</h2>
+            <form id="form" action="">
+                <label for="word">Insira uma palavra ou texto:</label>
+                <input type="text" name="word" id="word">
+                <button type="button" onclick="countVowelsFromForm()">Executar</button>
+            </form>
+            <p id="result"></p>
+        </div>
+
+        <br>
+        <div class="exercise2">
+            <h1>Exercício 2</h1>
+            <h2>Trabalhando com Arrays e Objetos</h2>
+            <span>Dado o array:</span>
+            <div class="code-box">
+                <p>
+                    let lista = [
+                    <br>{"id" : 1, "name": "Ada Lovelace", "bio" : "Ada Lovelace, foi uma matemática e escritora inglesa
+                    reconhecida por ter escrito o primeiro algoritmo para ser processado por uma máquina"},
+                    <br>{"id" : 2, "name": "Alan Turing", "bio" : "Alan Turing foi um matemático, cientista da
+                    computação,
+                    lógico, criptoanalista, filósofo e biólogo teórico britânico, ele é amplamente considerado o pai da
+                    ciência da computação teórica e da inteligência artificial"},
+                    <br>{"id" : 3, "name": "Nikola Tesla", "bio" : "Nikola Tesla foi um inventor, engenheiro
+                    eletrotécnico e
+                    engenheiro mecânico sérvio, mais conhecido por suas contribuições ao projeto do moderno sistema de
+                    fornecimento de eletricidade em corrente alternada."},
+                    <br>{"id" : 4, "name": "Nicolau Copérnico", "bio": "Nicolau Copérnico foi um astrônomo e matemático
+                    polonês
+                    que desenvolveu a teoria heliocêntrica do Sistema Solar."}
+                    ];
+                </p>
+            </div>
+            <ul>
+                <li>a) Crie uma função que retorne a bio do id passado</li>
+                <li>b) Crie uma função que retorne o name do id passado</li>
+                <li>c) Crie uma função que apague um item da lista a partir de um id passado</li>
+                <li>d) Crie uma função que altere a bio ou o name a partir de um id passado</li>
+                <li>e) Demonstre todas as funções com o paradigma funcional e com o imperativo</li>
+            </ul>
+            <div class="code-box">
+                <h1>Bem-vindo(a) à Lista de Grandes Nomes</h1>
+                <h2>Manipule os registros utilizando o formulário abaixo:</h2>
+
+                <!-- Formulário para manipulação de registros -->
+                <div class="form">
+                    <label for="personId">ID da Pessoa:</label>
+                    <input type="number" id="personId" min="1">
+                    <br>
+                    <button onclick="searchName()">Buscar Nome</button>
+                    <button onclick="searchBio()">Buscar Bio</button>
+                    <button onclick="deleteItem()">Apagar Item</button>
+
+                    <br><br>
+
+                    <label for="newName">Novo Nome:</label>
+                    <input type="text" id="newName" placeholder="Atualizar Nome">
+
+                    <br>
+
+                    <label for="newBio">Nova Bio:</label>
+                    <input type="text" id="newBio" placeholder="Atualizar Bio">
+
+                    <br>
+
+                    <button onclick="updateItem()">Atualizar Item</button>
+                </div>
+            </div>
+
+            <!-- Área de resultados -->
+            <div id="results">
+                <h3>Lista de Pessoas:</h3>
+                <ul id="listPerson"></ul>
+            </div>
+
+            <script>
+                function countVowels(word) {
+                    const textNormalized = word.normalize('NFD').replace(/[\u0300-\u036f]/g, "").toLowerCase();
+                    const vowels = ['a', 'e', 'i', 'o', 'u'];
+
+                    return textNormalized.split('').reduce((count, letter) => {
+                        return vowels.includes(letter) ? count + 1 : count;
+                    }, 0);
+                }
+
+                function countVowelsFromForm() {
+                    const wordInput = document.getElementById("word");
+                    const word = wordInput.value.trim();
+
+                    if (!word) {
+                        alert("Por favor, insira uma palavra ou texto.");
+                        return;
+                    }
+
+                    const quantityVowels = countVowels(word);
+                    document.getElementById("result").textContent = `A palavra "${word}" tem ${quantityVowels} vogais.`;
+                }
+
+                // Console
+                const word = "To com sono!";
+                const quantityVowels = countVowels(word);
+                console.log(`A palavra "${word}" tem ${quantityVowels} vogais.`);
+
+
+                const listPerson = [
+                    { id: 1, name: "Ada Lovelace", bio: "Ada Lovelace foi uma matemática e escritora inglesa reconhecida por ter escrito o primeiro algoritmo para ser processado por uma máquina." },
+                    { id: 2, name: "Alan Turing", bio: "Alan Turing foi um matemático, cientista da computação, lógico, criptoanalista, filósofo e biólogo teórico britânico. Ele é amplamente considerado o pai da ciência da computação teórica e da inteligência artificial." },
+                    { id: 3, name: "Nikola Tesla", bio: "Nikola Tesla foi um inventor, engenheiro eletrotécnico e engenheiro mecânico sérvio, mais conhecido por suas contribuições ao projeto do moderno sistema de fornecimento de eletricidade em corrente alternada." },
+                    { id: 4, name: "Nicolau Copérnico", bio: "Nicolau Copérnico foi um astrônomo e matemático polonês que desenvolveu a teoria heliocêntrica do Sistema Solar." }
+                ];
+
+                function showlistPerson() {
+                    const listPerson = document.getElementById("listPerson");
+                    listPerson.innerHTML = ""; // Limpar lista
+
+                    listPerson.forEach(person => {
+                        const li = document.createElement("li");
+                        li.textContent = `ID: ${person.id} | Nome: ${person.name} | Bio: ${person.bio}`;
+                        listPerson.appendChild(li);
+                    });
+                }
+
+                function searchName() {
+                    const id = Number(document.getElementById("personId").value);
+                    const result = getNameById(id);
+                    alert(`Nome: ${result}`);
+                }
+
+                function searchBio() {
+                    const id = Number(document.getElementById("personId").value);
+                    const result = getBioById(id);
+                    alert(`Bio: ${result}`);
+                }
+
+                function deleteItem() {
+                    const id = Number(document.getElementById("personId").value);
+                    const result = deleteItemById(id);
+                    alert(result);
+                    showlistPerson();
+                }
+
+                function updateItem() {
+                    const id = Number(document.getElementById("personId").value);
+                    const newName = document.getElementById("newName").value;
+                    const newBio = document.getElementById("newBio").value;
+                    const result = updateItemById(id, newBio, newName);
+                    if (result) {
+                        alert(`Item com ID ${id} atualizado.`);
+                    } else {
+                        alert("ID não encontrado.");
+                    }
+                    showlistPerson();
+                }
+
+                function getBioById(id) {
+                    const person = listPerson.find((item) => item.id === id);
+                    return person ? person.bio : "ID não encontrado";
+                }
+
+                function getNameById(id) {
+                    const person = listPerson.find((item) => item.id === id);
+                    return person ? person.name : "ID não encontrado";
+                }
+
+                function deleteItemById(id) {
+                    const index = listPerson.findIndex((item) => item.id === id);
+                    if (index !== -1) {
+                        listPerson.splice(index, 1);
+                        return "Item removido";
+                    } else {
+                        return "ID não encontrado";
+                    }
+                }
+
+                function updateItemById(id, newBio, newName) {
+                    const index = listPerson.findIndex((item) => item.id === id);
+                    if (index !== -1) {
+                        if (newBio) {
+                            listPerson[index].bio = newBio;
+                        }
+                        if (newName) {
+                            listPerson[index].name = newName;
+                        }
+                        return listPerson[index];
+                    }
+                    return undefined;
+                }
+
+                showlistPerson();
+            </script>
+</body>
+
+</html>
