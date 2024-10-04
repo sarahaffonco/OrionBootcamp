@@ -7,10 +7,10 @@ function countVowels(word?: string): number {
     return 0;
   }
 
-  const textLowerCase = text.toLowerCase();
-  const vowels = ['a', 'á', 'à', 'ã', 'â', 'e', 'é', 'è', 'ê', 'i', 'í', 'ì', 'î', 'o', 'ó', 'ò', 'õ', 'ô', 'u', 'ú', 'ù', 'û'];
+  const textNormalized = text.normalize('NFD').replace(/[\u0300-\u036f]/g, "").toLowerCase();
+  const vowels = ['a', 'e', 'i', 'o', 'u'];
 
-  return textLowerCase.split('').reduce((count, letter) => {
+  return textNormalized.split('').reduce((count, letter) => {
     return vowels.includes(letter) ? count + 1 : count;
   }, 0);
 }
