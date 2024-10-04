@@ -8,11 +8,21 @@
 			"problemMatcher": [
 				"$tsc-watch"
 			],
+			"group": "build",
+			"label": "tsc: watch - Exercicio1/tsconfig.json"
+		},
+		{
+			"type": "typescript",
+			"tsconfig": "exercicio2/tsconfig.json",
+			"option": "watch",
+			"problemMatcher": [
+				"$tsc-watch"
+			],
 			"group": {
 				"kind": "build",
 				"isDefault": true
 			},
-			"label": "tsc: watch - Exercicio1/tsconfig.json"
+			"label": "tsc: watch - exercicio2/tsconfig.json"
 		}
 	]
 }
