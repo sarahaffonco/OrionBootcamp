@@ -3,13 +3,13 @@
 	"tasks": [
 		{
 			"type": "typescript",
-			"tsconfig": "exercicio1/tsconfig.json",
+			"tsconfig": "exercicio_1/tsconfig.json",
 			"option": "watch",
 			"problemMatcher": [
 				"$tsc-watch"
 			],
 			"group": "build",
-			"label": "tsc: watch - exercicio1/tsconfig.json"
+			"label": "tsc: watch - exercicio_1/tsconfig.json"
 		},
 		{
 			"type": "typescript",
