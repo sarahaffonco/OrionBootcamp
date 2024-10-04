@@ -8,7 +8,7 @@ function countVowels(word?: string): number {
   }
 
   const textNormalized = text.normalize('NFD').replace(/[\u0300-\u036f]/g, "").toLowerCase();
-  const vowels = ['a', 'e', 'i', 'o', 'u'];
+  const vowels = ['a', 'e', 'i', 'o', 'u'];
 
   return textNormalized.split('').reduce((count, letter) => {
     return vowels.includes(letter) ? count + 1 : count;
