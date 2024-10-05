@@ -5,7 +5,70 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Exercicios</title>
-    <link rel="stylesheet" href="./style.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            background-color: #f4f4f4;
+            color: #333;
+            font-size: 20px;
+
+        }
+
+        h1,
+        h2,
+        h3 {
+            font-size: 30px;
+
+        }
+
+        div {
+            margin-bottom: 30px;
+            padding: 20px;
+            background: #FFFFFF;
+            border-radius: 5px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        label {
+            display: block;
+            margin: 10px 0 5px;
+            color: #000000;
+        }
+
+        input[type="text"] {
+            width: calc(100% - 22px);
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+
+        button {
+            margin-top: 10px;
+            padding: 10px 15px;
+            background-color: #6495ED;
+            color: #FFFFFF;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #0000FF;
+            color: #FFFFFF;
+            transition: 1s;
+        }
+
+        .code-box {
+            background: #696969;
+            color: #ecf0f1;
+            padding: 15px;
+            border-radius: 5px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+            font-family: 'Courier New', Courier, monospace;
+            margin: 10px 0;
+        }
+    </style>
 </head>
 
 <body>
@@ -78,8 +141,6 @@
                     <label for="newBio">Nova Bio:</label>
                     <input type="text" id="newBio" placeholder="Atualizar Bio">
 
-                    <br>
-
                     <button onclick="updateItem()">Atualizar Item</button>
                 </div>
             </div>
@@ -127,13 +188,13 @@
                 ];
 
                 function showlistPerson() {
-                    const listPerson = document.getElementById("listPerson");
-                    listPerson.innerHTML = ""; // Limpar lista
+                    const listElement = document.getElementById("listPerson"); 
+                    listElement.innerHTML = ""; 
 
                     listPerson.forEach(person => {
                         const li = document.createElement("li");
                         li.textContent = `ID: ${person.id} | Nome: ${person.name} | Bio: ${person.bio}`;
-                        listPerson.appendChild(li);
+                        listElement.appendChild(li); 
                     });
                 }
 
